@@ -1,2 +1,3 @@
 # padawan-board-ui
-padawan's secure clipboard ui
+
+> Padawan Board Client
