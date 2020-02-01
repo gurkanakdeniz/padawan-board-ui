@@ -1,30 +1,56 @@
 <template>
-  <div class="">
-    <Board />
+  <mdb-container fluid class="fill">
+    <mdb-row class="fill">
+      <mdb-col class="padawan-board">
+        <mdb-col class="centered">
+          <h2 style="color:#ff7e00">Padawan's Board</h2>
+          <Board />
+        </mdb-col>
+      </mdb-col>
+      <mdb-col class="find-board">
+        <mdb-col class="centered">
+          <h2 style="color:#ff033e">Find Padawan's Board</h2>
 
-    <h5>**************************************</h5>
+          <mdb-container>
+            <mdb-row>
+              <mdb-col style="margin: 2em;">
+                <mdb-input
+                  v-model="boardUUID"
+                  label="Board Id"
+                  type="Text"
+                  size="sm"
+                />
+              </mdb-col>
+              <mdb-col style="margin: 2em;">
+                <mdb-input
+                  v-on:keyup.native.enter="getBoard"
+                  v-model="boardPassword"
+                  label="Password"
+                  type="password"
+                  size="sm"
+                />
+              </mdb-col>
+            </mdb-row>
 
-    <h4>Board UUID</h4>
-    <input v-model="boardUUID" type="text" name="" value="" />
-    <h4>Board Password</h4>
-    <input v-model="boardPassword" type="password" name="" value="" />
-    <button type="button" name="button" v-on:click="getBoard">Find</button>
+            <mdb-btn gradient="blue" rounded v-on:click="getBoard">
+              Find
+            </mdb-btn>
 
-    <h4>Board :</h4>
-
-    <div class="">
-      <h2>-----------------------------</h2>
-      {{ board }}
-      <h2>-----------------------------</h2>
-    </div>
-
-    <br />
-    <br />
-
-    <div class="">
-      {{ boardCountDown }}
-    </div>
-  </div>
+            <mdb-row>
+              <mdb-col style="margin: 2em;">
+                <p>{{ board }}</p>
+              </mdb-col>
+            </mdb-row>
+            <mdb-row>
+              <mdb-col style="margin: 2em;">
+                <p>{{ boardCountDown }}</p>
+              </mdb-col>
+            </mdb-row>
+          </mdb-container>
+        </mdb-col>
+      </mdb-col></mdb-row
+    >
+  </mdb-container>
 </template>
 
 <script>
@@ -82,21 +108,24 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h1,
-h2 {
-  font-weight: normal;
+.centered {
+  display: initial;
+  vertical-align: middle;
+  text-align: center;
 }
-ul {
-  list-style-type: none;
-  padding: 0;
+.fill {
+  height: 100%;
+  width: 100%;
+  padding: 0px !important;
+  margin: 0px !important;
 }
-li {
-  display: inline-block;
-  margin: 0 10px;
+
+.padawan-board {
+  background-color: #f2f2f2;
 }
-a {
-  color: #42b983;
+
+.find-board {
+  background-color: #e6e6e6;
 }
 </style>

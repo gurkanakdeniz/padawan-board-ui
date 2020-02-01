@@ -1,43 +1,70 @@
 <template>
-  <div class="">
-    <br />
-    <br />
-    <h3>Board Text :</h3>
-    <div class="">
-      <input v-model="board" type="text" name="" value="" />
-    </div>
-    <br />
-    <h3>Board Time :</h3>
-    <div class="">
-      <input v-model="boardTime" type="number" name="" value="60" />
-    </div>
-    <br />
-    <h3>Board Password :</h3>
-    <div class="">
-      <input v-model="boardPassword" type="password" name="" value="" />
-    </div>
-    <br />
-    <div class="">
-      <button type="button" name="button" v-on:click="saveBoard">Save</button>
-    </div>
-    <br />
-    <div class="">uuid : {{ boardUUID }}</div>
-
-    <br />
-
+  <mdb-container>
+    <mdb-row>
+      <mdb-col style="margin: 2em;">
+        <mdb-input v-model="board" label="Board" type="textarea" size="sm" />
+      </mdb-col>
+    </mdb-row>
+    <mdb-row>
+      <mdb-col>
+        <mdb-input
+          v-model="boardTime"
+          label="Time"
+          type="number"
+          min="1"
+          size="sm"
+        />
+      </mdb-col>
+      <mdb-col>
+        <mdb-input
+          v-on:keyup.native.enter="saveBoard"
+          v-model="boardPassword"
+          label="Password"
+          type="password"
+          size="sm"
+        />
+      </mdb-col>
+    </mdb-row>
+    <mdb-btn gradient="green" rounded v-on:click="saveBoard">
+      Save
+    </mdb-btn>
     <div>
-      {{ boardCountDown }}
+      <br />
+      <br />
+      <p>id : {{ boardUUID }}</p>
+      <p>time : {{ boardCountDown }}</p>
     </div>
-  </div>
+  </mdb-container>
 </template>
 
 <script>
+import {
+  mdbContainer,
+  mdbRow,
+  mdbCol,
+  mdbCard,
+  mdbCardBody,
+  mdbInput,
+  mdbBtn,
+  mdbIcon
+} from 'mdbvue'
+
 export default {
   name: 'Board',
+  components: {
+    mdbContainer,
+    mdbRow,
+    mdbCol,
+    mdbCard,
+    mdbCardBody,
+    mdbInput,
+    mdbBtn,
+    mdbIcon
+  },
   data() {
     return {
       board: '',
-      boardTime: '',
+      boardTime: 60,
       boardPassword: '',
       boardUUID: '',
       boardCountDown: ''
@@ -69,22 +96,3 @@ export default {
   }
 }
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h1,
-h2 {
-  font-weight: normal;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
-</style>
